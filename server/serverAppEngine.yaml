@@ -1,0 +1,5 @@
+runtime: nodejs16
+service: server
+entrypoint: node index.js
+env_variables:
+  GAE_DB_ADDRESS: "/cloudsql/gae-demo-project-2022:europe-west1:gae-demo-db"

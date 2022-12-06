@@ -4,7 +4,9 @@ function App() {
   const [data, setData] = useState();
   useEffect(() => {
     async function getApiData() {
-      const response = await fetch("http://localhost:3000/db-demo");
+      const response = await fetch(
+        process.env.REACT_APP_API_ADDRESS + "/db-demo"
+      );
       const responseData = await response.json();
       setData(responseData);
     }

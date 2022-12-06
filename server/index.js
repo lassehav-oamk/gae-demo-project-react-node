@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -12,9 +12,14 @@ let dbConfig = {
     user: "testuser",
     password: "testuserpwd1",
     database: "gae-demo-db",
-    host: "127.0.0.1",
   },
 };
+
+if (process.env.NODE_ENV == "production") {
+  dbConfig.connection.socketPath = process.env.GAE_DB_ADDRESS;
+} else {
+  dbConfig.connection.host = "127.0.0.1";
+}
 
 const knex = require("knex")(dbConfig);
 
